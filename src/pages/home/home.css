@@ -1,0 +1,113 @@
+.main-container {
+    display: flex;
+    width: 100vw;
+    height: 100vh; /* Fallback */
+    height: 100svh; /* Use small viewport height */
+    overflow: hidden;
+    position: relative;
+}
+
+.content-container {
+    flex: 1;
+    height: 100vh; /* Fallback */
+    height: 100svh; /* Use small viewport height */
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+    scroll-snap-type: y mandatory; /* Scroll Snapping */
+}
+
+.content-container::-webkit-scrollbar {
+    display: none;
+}
+
+.section {
+    height: 100vh; /* Fallback */
+    height: 100svh; /* Use small viewport height */
+    min-height: 100svh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    overflow: hidden; /* The section itself does not scroll */
+
+    /* Scroll Snapping */
+    scroll-snap-align: start;
+    scroll-snap-stop: always; /* Force stop at each section */
+    position: relative;
+}
+
+/* Animated Title Letters */
+.animated-title {
+    display: inline-block;
+    /*-webkit-text-stroke: 1px var(--manhattan-red);*/
+    color: var(--primary-title-colour);
+    font-size: 20vw;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.title-letter {
+    display: inline-block;
+    opacity: 0;
+    /*rotate: 10deg;*/
+    margin-left: -1vw;
+    transform: translateY(20px);
+    animation: fade-in-letter 0.8s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+    animation-delay: calc(var(--letter-index) * 0.025s);
+}
+
+.title-letter.a {
+    margin-left: -3px;
+}
+.title-letter.W {
+    margin-left: -3px;
+}
+.title-letter.O {
+    margin-left: 0px;
+}
+.title-letter.X {
+    margin-left: -5px;
+}
+
+.home-tagline {
+    margin-top: -30px;
+    font-family: var(--heading-font);
+    color: var(--burnt-negroni);
+    opacity: 0;
+    filter: blur(10px);
+    animation: fade-blur-in 1s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes fade-in-letter {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fade-blur-in {
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        justify-content: center;
+        scroll-snap-stop: always;
+    }
+
+    .home-tagline {
+        font-size: 3.5vw;
+        margin-top: 5px;
+    }
+}

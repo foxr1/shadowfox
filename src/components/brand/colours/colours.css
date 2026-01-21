@@ -1,0 +1,128 @@
+.brand-dimmer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 0.3s ease;
+}
+
+.brand-dimmer.active {
+    opacity: 1;
+}
+
+/* --- Colour Palette --- */
+.brand-colors {
+    display: flex;
+    gap: 60px;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding-top: 0;
+}
+
+.color-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+    z-index: 2; /* Default below dimmer */
+    -webkit-tap-highlight-color: transparent;
+}
+
+.color-container.hovered, .color-container.active {
+    z-index: 101; /* Above dimmer (100) */
+}
+
+/* Color Circle Animation */
+.color-circle {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid white;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+    transform: scale(0);
+    position: relative;
+    z-index: 102;
+}
+
+.brand-section.visible .grow-in-color .color-circle {
+    transform: scale(1);
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.color-container:hover .color-circle {
+    transform: scale(1.05) !important;
+}
+
+/* Color Details Animation */
+.color-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    z-index: 102; /* Ensure text is above dimmer when active */
+}
+
+.colour-name {
+    font-family: var(--heading-font);
+}
+
+/* Stagger details with colors */
+.brand-section.visible .color-container:nth-child(1) .fade-in-details { transition-delay: 0.3s; }
+.brand-section.visible .color-container:nth-child(2) .fade-in-details { transition-delay: 0.5s; }
+.brand-section.visible .color-container:nth-child(3) .fade-in-details { transition-delay: 0.7s; }
+.brand-section.visible .color-container:nth-child(4) .fade-in-details { transition-delay: 0.7s; }
+
+.color-details span:first-child {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--primary-text-colour);
+    margin-bottom: 4px;
+}
+
+.color-details span:last-child {
+    font-size: 0.8rem;
+    font-family: monospace;
+    color: var(--secondary-text-colour);
+}
+
+.burnt-negroni { background-color: var(--burnt-negroni); }
+.manhattan-red { background-color: var(--manhattan-red); }
+.neon-orange { background-color: var(--neon-orange); }
+.seashell-pink { background-color: var(--seashell-pink); }
+
+@media (max-width: 768px) {
+    .brand-colors {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .color-container {
+        width: 40%; /* 2 per row roughly */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .color-circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .color-details span:first-child {
+        font-size: 0.9rem;
+    }
+
+    .color-details span:last-child {
+        font-size: 0.7rem;
+    }
+}

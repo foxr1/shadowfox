@@ -1,0 +1,132 @@
+.section-scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto; /* Enable vertical scrolling within the section */
+    overflow-x: hidden;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+
+    /* Ensure content is centered if it's short */
+    display: flex;
+    flex-direction: column;
+}
+
+.section-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+.section-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 100%; /* Ensure it fills at least the screen height */
+    width: 100%;
+    padding-left: 40px;
+    box-sizing: border-box;
+    position: relative;
+}
+
+.section-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    width: 100%;
+    padding-right: 40px;
+    box-sizing: border-box;
+}
+
+.section-title-wrapper {
+    margin-top: 40px;
+    color: var(--primary-text-colour);
+    flex-shrink: 0; /* Don't shrink the title */
+}
+
+.section-title {
+    font-family: var(--heading-font);
+    opacity: 0;
+    transform: translateY(20px); /* Slight slide up with fade */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    white-space: nowrap;
+    margin: 0;
+}
+
+.section-title-wrapper.visible .section-title {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Shared Brand Section Styles --- */
+.brand-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+}
+
+/* Divider Animation */
+.brand-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--quaternary-text-colour);
+    margin-top: 40px;
+    margin-bottom: 10px;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.8s ease-out;
+}
+
+.brand-section.visible .grow-line {
+    transform: scaleX(1);
+    transition-delay: 0.5s;
+}
+
+/* Label Animation */
+.brand-label {
+    font-family: var(--heading-font);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--tertiary-text-colour);
+    align-self: center;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.brand-section.visible .fade-in-label {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.8s;
+}
+
+/* Shared Fade In Animation */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.brand-section.visible .fade-in-up {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    .section-content-wrapper {
+        padding-left: 20px;
+    }
+
+    .section-content {
+        padding-right: 20px;
+    }
+
+    .section-title-wrapper {
+        margin-top: 20px;
+    }
+}

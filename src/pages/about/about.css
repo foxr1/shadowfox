@@ -1,0 +1,93 @@
+.about-inner-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+}
+
+.team-annotation {
+    margin-top: auto;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--primary-text-colour);
+    z-index: 10;
+    position: relative;
+    top: -140px;
+
+    /* Animation Initial State */
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.team-tagline {
+    margin-top: 40px;
+    margin-bottom: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--secondary-text-colour);
+    z-index: 10;
+    position: relative;
+    top: 160px;
+
+    /* Animation Initial State */
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+}
+
+.team-text {
+    font-family: var(--heading-font);
+    font-size: 2rem;
+    font-weight: 500;
+}
+
+.tagline-text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.8;
+    font-style: italic;
+    white-space: nowrap;
+}
+
+/* Animation Triggered Classes */
+.about-inner-content.visible .fade-in-content {
+    opacity: 1;
+}
+
+.about-inner-content.visible .delay-text {
+    transition-delay: 0.5s;
+}
+
+.about-inner-content.visible .delay-text-2 {
+    transition-delay: 0.7s;
+}
+
+.footer {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    color: var(--tertiary-text-colour);
+    font-size: 0.9rem;
+    margin-top: 40px;
+    align-self: center;
+    z-index: 10;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .team-annotation {
+        top: -110px;
+    }
+
+    .team-tagline {
+        top: 110px;
+    }
+
+    .tagline-text {
+        font-size: 3.5vw;
+    }
+}

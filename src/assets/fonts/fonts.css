@@ -1,0 +1,18 @@
+@font-face {
+    font-family: P22 Morris Troy;
+    src: url("./P22 Morris Troy.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: P22 Morris Golden;
+    src: url("./P22 Morris Golden.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: 'Calder Dark';
+    src: url("./Calder Dark.ttf") format( "truetype");
+}
+@font-face {
+    font-family: 'Neco Variable';
+    src: url("./Neco-Variable.ttf") format("truetype");
+}

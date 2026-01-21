@@ -1,0 +1,120 @@
+.pricing-content-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    height: 100%;
+    width: 100%;
+    padding-top: 0;
+    box-sizing: border-box;
+}
+
+.packages-list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding-top: 40px;
+    max-width: 600px;
+    margin-top: auto; /* Center vertically */
+    margin-bottom: auto;
+    align-self: center;
+}
+
+.package-item {
+    font-family: var(--heading-font);
+    font-size: 2.5rem;
+    font-weight: 500;
+    color: var(--primary-text-colour);
+    padding: 20px 0;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Faster transition */
+}
+
+.package-divider {
+    width: 100%;
+    height: 1px;
+    background-color: var(--quaternary-text-colour);
+    opacity: 0;
+    transform: scaleX(0);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out; /* Faster transition */
+}
+
+/* Animation Triggered Classes */
+.packages-list.visible .fade-in-package {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.packages-list.visible .package-divider.fade-in-package {
+    transform: scaleX(1);
+}
+
+/* Stagger delays for list items - Faster sequence */
+.packages-list.visible .fade-in-package:nth-child(1) { transition-delay: 0.05s; }
+.packages-list.visible .fade-in-package:nth-child(2) { transition-delay: 0.1s; }
+.packages-list.visible .fade-in-package:nth-child(3) { transition-delay: 0.15s; }
+.packages-list.visible .fade-in-package:nth-child(4) { transition-delay: 0.2s; }
+.packages-list.visible .fade-in-package:nth-child(5) { transition-delay: 0.25s; }
+.packages-list.visible .fade-in-package:nth-child(6) { transition-delay: 0.3s; }
+.packages-list.visible .fade-in-package:nth-child(7) { transition-delay: 0.35s; }
+.packages-list.visible .fade-in-package:nth-child(8) { transition-delay: 0.4s; }
+.packages-list.visible .fade-in-package:nth-child(9) { transition-delay: 0.45s; }
+.packages-list.visible .fade-in-package:nth-child(10) { transition-delay: 0.5s; }
+.packages-list.visible .fade-in-package:nth-child(11) { transition-delay: 0.55s; }
+
+.button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    margin-bottom: 40px;
+}
+
+.contact-button {
+    font-family: var(--heading-font);
+    background-color: transparent;
+    border: 2px solid var(--primary-text-colour);
+    color: var(--primary-text-colour);
+    padding: 15px 40px;
+    border-radius: 50px; /* Cylinder shape */
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+
+    /* Animation Initial State */
+    opacity: 0;
+    transform: translateY(100px); /* Start further down */
+}
+
+.button-wrapper.visible .fade-in-button {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); /* Faster transition */
+    /* Removed delay so it triggers as soon as it's visible */
+}
+
+.contact-button:hover {
+    background-color: var(--primary-text-colour);
+    color: var(--tertiary-background-colour);
+}
+
+@media (max-width: 768px) {
+    .pricing-content-wrapper {
+        padding-left: 20px;
+    }
+
+    .package-item {
+        font-size: 1.8rem;
+        padding: 15px 0;
+    }
+
+    .contact-button {
+        margin-top: 40px;
+        font-size: 1rem;
+        padding: 12px 30px;
+    }
+}

@@ -1,0 +1,48 @@
+:root {
+  font-family: var(--body-font), system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: var(--primary-text-colour);
+  /*color: rgba(255, 255, 255, 0.87);*/
+  background-color: #E74F0A;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: var(--burnt-negroni);
+  color: var(--primary-text-colour);
+}
+
+body {
+  color: var(--primary-text-colour);
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh; /* Fallback */
+  min-height: 100svh; /* Use small viewport height for mobile */
+  overflow-x: hidden; /* Prevent horizontal scroll from animations */
+}
+
+h1 {
+  font-family: 'P22 Morris Troy', sans-serif;
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+.title-font {
+  font-family: var(--title-font);
+  color: var(--burnt-negroni);
+}
+.body-font {
+  font-family: var(--body-font);
+}
+.other-font {
+  font-family: var(--heading-font);
+}

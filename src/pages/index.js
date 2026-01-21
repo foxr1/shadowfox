@@ -1,0 +1,5 @@
+export { default as Home } from './home/Home.jsx'
+export { default as Brand } from './brand/Brand.jsx'
+export { default as Projects } from './projects/Projects.jsx'
+export { default as Packages } from './packages/Packages.jsx'
+export { default as About } from './about/About.jsx'
