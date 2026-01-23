@@ -6,6 +6,7 @@ import Brand from '../brand/Brand'
 import Projects from '../projects/Projects'
 import Packages from '../packages/Packages'
 import About from '../about/About'
+import Logo from '../../assets/images/logo/logo.svg'
 
 const Home = () => {
   const location = useLocation()
@@ -104,7 +105,10 @@ const Home = () => {
 
       <div className="content-container" ref={contentRef}>
         <section id="home" className="section">
-          <h1 className="animated-title">{letters}</h1>
+          <div className="title-wrapper">
+            <img src={Logo} alt="Shadow Fox Logo" className="home-logo fade-in-logo" />
+            <h1 className="animated-title">{letters}</h1>
+          </div>
           <span className={'home-tagline'}>We work in your shadow.</span>
         </section>
         

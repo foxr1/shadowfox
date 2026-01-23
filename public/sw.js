@@ -2,7 +2,7 @@ const CACHE_NAME = 'shadow-fox-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/manifest.json'
+  '/site.manifest'
 ];
 
 self.addEventListener('install', (event) => {

@@ -6,12 +6,13 @@ const Navigation = () => {
   const location = useLocation()
   const navigate = useNavigate()
   const [isNavExpanded, setIsNavExpanded] = useState(false)
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768)
+  // Increased breakpoint to 1024 to include iPads/tablets as mobile/touch devices
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 1024)
   const [isVisible, setIsVisible] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth <= 768)
+      setIsMobile(window.innerWidth <= 1024)
     }
 
     window.addEventListener('resize', handleResize)
@@ -23,11 +24,24 @@ const Navigation = () => {
         setIsVisible(true)
     } else {
         setIsVisible(false)
+        // Ensure dimmer is also hidden when nav becomes invisible
+        setIsNavExpanded(false)
     }
   }, [location.pathname])
 
-  const handleNavigation = (path) => {
-    if (isMobile && !isNavExpanded) return
+  const handleNavigation = (e, path) => {
+    // If mobile and closed, clicking an item should just open the menu (let event bubble to toggleNav)
+    if (isMobile && !isNavExpanded) {
+        return
+    }
+
+    // If open or desktop, we are navigating. Stop propagation to prevent toggleNav from closing it immediately.
+    e.stopPropagation()
+
+    // If navigating to home, immediately close the nav to trigger fade out
+    if (path === '/') {
+        setIsNavExpanded(false)
+    }
 
     navigate(path)
     
@@ -46,11 +60,16 @@ const Navigation = () => {
   }
 
   const handleMouseEnter = () => {
-    setIsNavExpanded(true)
+    // Only expand on hover if visible (not on home page) and not on mobile/tablet
+    if (isVisible && !isMobile) {
+        setIsNavExpanded(true)
+    }
   }
 
   const handleMouseLeave = () => {
-    setIsNavExpanded(false)
+    if (!isMobile) {
+        setIsNavExpanded(false)
+    }
   }
 
   return (
@@ -67,23 +86,23 @@ const Navigation = () => {
         onMouseLeave={handleMouseLeave}
       >
         <ul>
-          <li className={location.pathname === '/' ? 'active' : ''} onClick={(e) => { e.stopPropagation(); handleNavigation('/') }}>
+          <li className={location.pathname === '/' ? 'active' : ''} onClick={(e) => handleNavigation(e, '/')}>
             <span className="nav-text">Home</span>
             <span className="nav-line"></span>
           </li>
-          <li className={location.pathname === '/brand' ? 'active' : ''} onClick={(e) => { e.stopPropagation(); handleNavigation('/brand') }}>
+          <li className={location.pathname === '/brand' ? 'active' : ''} onClick={(e) => handleNavigation(e, '/brand')}>
             <span className="nav-text">Brand</span>
             <span className="nav-line"></span>
           </li>
-          <li className={location.pathname === '/projects' ? 'active' : ''} onClick={(e) => { e.stopPropagation(); handleNavigation('/projects') }}>
+          <li className={location.pathname === '/projects' ? 'active' : ''} onClick={(e) => handleNavigation(e, '/projects')}>
             <span className="nav-text">Projects</span>
             <span className="nav-line"></span>
           </li>
-          <li className={location.pathname === '/pricing' ? 'active' : ''} onClick={(e) => { e.stopPropagation(); handleNavigation('/pricing') }}>
+          <li className={location.pathname === '/pricing' ? 'active' : ''} onClick={(e) => handleNavigation(e, '/pricing')}>
             <span className="nav-text">Packages</span>
             <span className="nav-line"></span>
           </li>
-          <li className={location.pathname === '/about' ? 'active' : ''} onClick={(e) => { e.stopPropagation(); handleNavigation('/about') }}>
+          <li className={location.pathname === '/about' ? 'active' : ''} onClick={(e) => handleNavigation(e, '/about')}>
             <span className="nav-text">About</span>
             <span className="nav-line"></span>
           </li>

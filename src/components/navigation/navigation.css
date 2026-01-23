@@ -27,11 +27,13 @@
     opacity: 0;
     /* Added padding to increase hit area and prevent accidental closing */
     padding: 60px 20px 60px 80px;
+    pointer-events: none; /* Disable interactions when hidden */
 }
 
 .side-nav.visible {
     transform: translateY(-50%) translateX(0);
     opacity: 1;
+    pointer-events: auto; /* Enable interactions when visible */
 }
 
 .side-nav ul {
@@ -110,10 +112,11 @@
     transform: translateX(0) scale(1.05);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
     .side-nav {
         right: 0;
         padding: 20px; /* Reset padding for mobile */
+        /* pointer-events is handled by .visible class now */
     }
 
     .side-nav ul {
@@ -126,7 +129,7 @@
 
     .side-nav li {
         padding: 2px;
-        pointer-events: none;
+        /* pointer-events: none;  <-- REMOVED THIS */
     }
 
     .nav-line {
@@ -145,9 +148,5 @@
 
     .side-nav.expanded .nav-text {
         right: 10px;
-    }
-
-    .side-nav {
-        pointer-events: auto;
     }
 }

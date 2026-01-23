@@ -1,5 +1,6 @@
 import './identity.css'
 import { useEffect, useRef } from 'react'
+import Logo from '../../../assets/images/logo/logo.svg'
 
 const Identity = () => {
   const identityRef = useRef(null)
@@ -33,15 +34,15 @@ const Identity = () => {
         <div className="identity-row">
             <div className="identity-item fade-in-up">
                 <span className="identity-title">Logotype</span>
-                <div className="identity-box"></div>
+                <div className="identity-box">
+                  <span className={'logotype'}>Shadow Fox</span>
+                </div>
             </div>
             <div className="identity-item fade-in-up">
                 <span className="identity-title">Brandmark</span>
-                <div className="identity-box"></div>
-            </div>
-            <div className="identity-item fade-in-up">
-                <span className="identity-title">Submark</span>
-                <div className="identity-box"></div>
+                <div className="identity-box">
+                    <img src={Logo} alt="Shadow Fox Brandmark" className="brandmark-img" />
+                </div>
             </div>
         </div>
         <div className="brand-divider grow-line"></div>
